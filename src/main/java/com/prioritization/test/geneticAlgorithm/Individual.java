@@ -1,6 +1,8 @@
 package com.prioritization.test.geneticAlgorithm;
 
-public class Individual {
+import java.util.Objects;
+
+public class Individual implements Field<Field>{
      int nrTests;
     private int[] genes;
     // Cache
@@ -67,7 +69,7 @@ public class Individual {
     }
 
     public void setGene(int index, int value) {
-        genes[index] = value;
+        this.genes[index] = value;
         fitness = 0;
     }
 
@@ -76,6 +78,7 @@ public class Individual {
         return genes.length;
     }
 
+    @Override
     public double getFitness() {
         if (fitness == 0) {
             fitness = FitnessCalculation.calculteAPFD(this);
@@ -90,5 +93,28 @@ public class Individual {
             geneString += getGene(i);
         }
         return geneString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Individual)) return false;
+        Individual that = (Individual) o;
+        return Double.compare(that.getFitness(), getFitness()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getFitness());
+    }
+
+    @Override
+    public int compareTo(Field other) {
+        if (this.getFitness()<other.getFitness())
+            return 1;
+        else if(other.getFitness()<this.getFitness())
+            return -1;
+        return 0;
     }
 }

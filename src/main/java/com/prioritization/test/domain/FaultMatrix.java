@@ -7,9 +7,9 @@ public class FaultMatrix {
 
     private Integer numberOfFaults;
     private Integer numberOfTests;
-    private byte[][] data;
+    private int[][] data;
 
-    public FaultMatrix(Integer numberOfFaults, Integer numberOfTests,byte[][] data) {
+    public FaultMatrix(Integer numberOfFaults, Integer numberOfTests,int[][] data) {
         this.numberOfFaults = numberOfFaults;
         this.numberOfTests = numberOfTests;
         this.data=data;
@@ -31,11 +31,11 @@ public class FaultMatrix {
         this.numberOfTests = numberOfTests;
     }
 
-    public byte[][] getData() {
+    public int[][] getData() {
         return data;
     }
 
-    public void setData(byte[][] data) {
+    public void setData(int[][] data) {
         this.data = data;
     }
 
@@ -66,7 +66,7 @@ public class FaultMatrix {
                 '}';
     }
 
-    public void printMatrix(byte[][] data, Integer numberOfFaults, Integer numberOfTests){
+    public void printMatrix(int[][] data, Integer numberOfFaults, Integer numberOfTests){
         for(int i=0;i<numberOfTests;i++){
             for(int j=0;j<numberOfFaults;j++){
                 System.out.print(data[i][j]);
@@ -75,7 +75,7 @@ public class FaultMatrix {
         }
     }
 
-    public byte getElementFromIndexes(Integer i,Integer j){
+    public int getElementFromIndexes(Integer i,Integer j){
         return data[i][j];
     }
 }

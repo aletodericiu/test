@@ -2,38 +2,48 @@ package com.prioritization.test.controller;
 
 //
 
-import com.prioritization.test.epo.ResultRequestEpo;
+import com.prioritization.test.domain.FaultMatrix;
 import com.prioritization.test.geneticAlgorithm.Individual;
 import com.prioritization.test.service.IFunctionalityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "false")
 public class ServiceController {
 
     @Autowired
     private IFunctionalityService             functionalityService;
 
-    @RequestMapping(path = "/ge", method = RequestMethod.GET)
-    public String getAllUsers() {
+    @RequestMapping (path = "/getfaultmatrix", method = RequestMethod.GET)
+    public FaultMatrix getFaultMatrix() {
 
-        return "salut";
+        return functionalityService.getFaultMatrixFromFile();
     }
 
-    @RequestMapping (value = "/getbestindivid", method = RequestMethod.POST)
-    public ResultRequestEpo getBestIndivid(@RequestBody String filepath) {
+    @RequestMapping (path = "/getbestindividual", method = RequestMethod.GET)
+    public Individual getBestIndivid() {
 
-        return functionalityService.getFittestIndivid(filepath);
+        return functionalityService.getFittestIndivid();
     }
 
-    @RequestMapping (value = "/getbestthreeindivids", method = RequestMethod.POST)
-    public List<Individual> getBestThreeIndivids(@RequestBody String filepath) {
+    @RequestMapping (path = "/getbestthreeindividuals", method = RequestMethod.GET)
+    public List<Individual> getBestThreeIndivids() {
 
-        return functionalityService.getTopThreeFittest(filepath);
+        return functionalityService.getTopThreeFittest();
+    }
+
+    @RequestMapping (path = "/getgraphcoordinates", method = RequestMethod.POST)
+    public List<Integer> getGraphCoordinatesForIndividual(@RequestBody Individual individual) {
+
+        return functionalityService.computeGraphicForIndividual(individual);
+    }
+
+    @RequestMapping (path = "/getAPFD", method = RequestMethod.POST)
+    public Double getAPFDForAGivenVector(@RequestBody int[] data) {
+
+        return functionalityService.calculateAPFDForAGivenVector(data);
     }
 }
