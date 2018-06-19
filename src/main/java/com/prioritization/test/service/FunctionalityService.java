@@ -58,7 +58,6 @@ public class FunctionalityService implements IFunctionalityService {
         Algorithm.setFaultMatrix(faultMatrix);
 
         // Create an initial population
-        //Population myPop = new Population(UsefulMethods.factorial(faultMatrix.getNumberOfTests()), true,faultMatrix.getNumberOfTests());
         Population myPop = new Population(150, true,faultMatrix.getNumberOfTests());
         // Evolve our population until we reach an optimum solution
         int i=0;
@@ -88,7 +87,6 @@ public class FunctionalityService implements IFunctionalityService {
         Algorithm.setFaultMatrix(faultMatrix);
 
         // Create an initial population
-        //Population myPop = new Population(UsefulMethods.factorial(faultMatrix.getNumberOfTests()), true,faultMatrix.getNumberOfTests());
         Population myPop = new Population(150, true,faultMatrix.getNumberOfTests());
         // Evolve our population until we reach an optimum solution
         int i=0;

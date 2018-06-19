@@ -13,7 +13,7 @@ public class FitnessCalculation {
         FitnessCalculation.faultMatrix = faultMatrix;
     }
 
-    public static double calculteAPFD(Individual individual){
+    public static double calculteAP(Individual individual){
         int[] data = individual.getGenes();
         int[] vect= new int[faultMatrix.getNumberOfFaults()];
         Integer cursor=0;
@@ -44,7 +44,7 @@ public class FitnessCalculation {
         Individual individual=new Individual();
         individual.setGenes(genes);
         individual.setNrTests(nrTests);
-        return calculteAPFD(individual);
+        return calculteAP(individual);
 //        return 1;
     }
 
